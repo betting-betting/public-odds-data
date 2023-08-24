@@ -49,8 +49,8 @@ class Logger(object):
 class slack_bot:
     
     def __init__(self):
-        self.bot_slack_token : str = 'xoxb-4033727235394-5567562926998-yoRAeBVIMkP71Sy6Ie0e34AO'
-        self.channel : str = 'project'
+        self.bot_slack_token : str = '###########'
+        self.channel : str = '########'
         self.client = WebClient(token=self.bot_slack_token)
 
 # Function to send a message to a specific channel
@@ -73,7 +73,7 @@ class notify(slack_bot):
     
     def __init__(self):
         super().__init__()
-        self.mail_to : str = 'betting.bot.nathan.ryan@gmail.com'
+        self.mail_to : str = '##########################'
         
     # def send_mail(self,error,script):
     #     outlook = win32.Dispatch('outlook.application')
