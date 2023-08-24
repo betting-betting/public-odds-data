@@ -1,0 +1,5 @@
+select distinct event_name
+from
+tennis_score_data
+where 1=1
+and date(created_ts) = date(sysdate())

@@ -1,0 +1,9 @@
+select distinct mapping.event_name
+from
+betfair_tennis_match_odds_data odds
+inner join
+betfair_smarkets_event_market_mapping mapping
+on odds.marketId = mapping.Betfair_market_id
+where 1=1
+and date(odds.created_ts) = date(sysdate())
+and odds.inplay = 1

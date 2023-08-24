@@ -1,0 +1,26 @@
+select score_event_mapping.betfair_event_name,score_data.home, score_data.away, odds.marketId, odds.selection_id, selection_mapping.player_location 
+from
+(select distinct marketId,selection_id
+from
+betfair_tennis_match_odds_data) odds
+inner join
+betfair_smarkets_event_market_mapping mapping
+on odds.marketId = mapping.Betfair_market_id
+inner join
+score_event_mapping score_event_mapping
+on mapping.event_name = score_event_mapping.betfair_event_name
+inner join
+(select distinct(event_name),home,away 
+from tennis_score_data) score_data
+on score_event_mapping.sofascore_slug = score_data.event_name
+left join
+tennis_selection_home_away_matching selection_mapping
+on odds.selection_id = selection_mapping.selection_id and odds.marketId = selection_mapping.market_id
+where selection_mapping.player_location is null
+group by 
+score_event_mapping.betfair_event_name,
+score_data.home, 
+score_data.away, 
+odds.marketId, 
+odds.selection_id, 
+selection_mapping.player_location
